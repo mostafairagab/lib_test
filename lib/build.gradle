@@ -13,6 +13,7 @@ afterEvaluate {
     publishing {
         publications {
             release(MavenPublication) {
+                from components.java
                 groupId = 'com.github.mostafairagab'
                 artifactId = 'test-library'
                 version = '1.0'
