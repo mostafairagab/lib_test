@@ -1,6 +1,11 @@
+buildscript {
+    project.ext{
+        kotlin_version = '1.8.0'
+    }
+}
+
 plugins {
-    id 'java-library'
-    id 'org.jetbrains.kotlin.jvm'
+    id 'org.jetbrains.kotlin.jvm' version "$kotlin_version"
     id 'maven-publish'
 }
 
@@ -9,15 +14,19 @@ java {
     targetCompatibility = JavaVersion.VERSION_1_7
 }
 
-afterEvaluate {
-    publishing {
-        publications {
-            release(MavenPublication) {
-                from components.java
-                groupId = 'com.github.mostafairagab'
-                artifactId = 'test-library'
-                version = '1.0'
-            }
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            groupId = 'com.github.mostafairagab'
+            artifactId = 'test-library'
+            version = '1.0'
+
+            from components.java
         }
     }
+}
+
+dependencies {
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 }
